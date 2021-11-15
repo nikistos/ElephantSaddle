@@ -24,7 +24,7 @@ class MainViewModel @Inject constructor(
             },
             onResults = { results ->
                 mutableIsRecording.value = false
-                postEvent(RecognitionResultsReadyEvent(results))
+                postEvent(OpenPurchaseWithSpeakEvent(results))
             },
             onError = { errorCode ->
                 mutableIsRecording.value = false
@@ -34,7 +34,7 @@ class MainViewModel @Inject constructor(
                 // в настройках эмулятора включить майк
                 postEvent(
                     when (errorCode)  {
-                        ERROR_NO_MATCH -> RecognitionResultsReadyEvent(results = null)
+                        ERROR_NO_MATCH -> OpenPurchaseWithSpeakEvent(results = null)
                         ERROR_INSUFFICIENT_PERMISSIONS -> MicPermissionDeniedErrorEvent
                         ERROR_NETWORK -> NetworkErrorEvent
                         else -> UnknownErrorEvent
@@ -70,7 +70,7 @@ class MainViewModel @Inject constructor(
 
     fun purchaseElephant() {
         cancelListening()
-        postEvent(PurchaseElephantEvent)
+        postEvent(OpenPurchaseEvent)
     }
 
     fun showElephants() {
