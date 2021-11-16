@@ -12,6 +12,5 @@ interface ElephantDao {
     @Query("SELECT * FROM elephants")
     fun getAll(): Flow<List<Elephant>>
 
-    @Insert(onConflict = REPLACE)
-    suspend fun insert(elephant: Elephant)
+    //TODO 12: insert query
 }
